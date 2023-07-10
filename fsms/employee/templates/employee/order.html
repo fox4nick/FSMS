@@ -6,6 +6,11 @@
         <div class="col-md-12 col-sm-12 p-4">
             <form method="POST">
                 {% csrf_token %}
+                
+                <div class="col-md-12 col-sm-12 mt-5">
+                    <h2>Snacks</h2>
+                </div>
+
                 <div class="pt-5">
                     {% for snack in snacks %}
                     <div class="row">
@@ -24,6 +29,10 @@
                     </div>
                     <hr />
                 {% endfor %}
+                </div>
+
+                <div class="col-md-12 col-sm-12 mt-5">
+                    <h2>Drinks</h2>
                 </div>
 
                 <div class="pt-5">
@@ -60,13 +69,21 @@
                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#submitModal">
                   Submit Order!
                 </button>
-                <!-- <button class="btn btn-dark mt-5">Place Order!</button> -->
 
                 <!-- Modal -->
                 <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="submitModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
+                        <!-- 
+                        I would like to force at least one radio button to be selected. Having trouble detecting if radio button has been selected.
+
+                        {% if items|length > 0 %}
+                            <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
+                        {% else %}
+                            <h5 class="modal-title" id="submitModalLabel">Select At Least One Item!</h5>
+                        {% endif %} -->
+
                         <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>

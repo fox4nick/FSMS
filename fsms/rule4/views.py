@@ -10,16 +10,18 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
 		today = datetime.today()
 		orders = OrderModel.objects.filter(
 			created_on__year=today.year, created_on__month=today.month, created_on__day=today.day)
+		#orders = OrderModel.objects.all()
 
 		# loop through the orders check if order is fulfilled
-		unshipped_orders = []
+		deferred_orders = []
 		for order in orders:
-		# 	if order.status == "Deferred":
-				unshipped_orders.append(order)
+			if order.status == "Deferred":
+				deferred_orders.append(order)
 
-		# pass total number of orders and total revenue into template
+		# pass total number of orders into template
 		context = {
-			'orders': unshipped_orders,
+			'orders': orders,
+			'deferred_orders': len(deferred_orders),
 			'total_orders': len(orders)
 		}
 
@@ -55,11 +57,6 @@ class OrderDetails(LoginRequiredMixin, UserPassesTestMixin, View):
 		}
 
 		order_items['items'] = order.items.all()
-
-		context = {
-			'order': order,
-			'items': order_items['items'],
-		}
 
 		context = {
 			'order': order,

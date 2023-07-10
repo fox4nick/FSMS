@@ -91,7 +91,8 @@ class MenuSearch(View):
 
 		menu_items = MenuItem.objects.filter(
 			Q(name__icontains=query) |
-			Q(description__icontains=query)
+			Q(description__icontains=query) |
+			Q(category__name__contains=query)
 		)
 
 		context = {
