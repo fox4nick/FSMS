@@ -15,35 +15,39 @@
      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
   </head>
   <body>
-    {% block body %}
+    {% include 'employee/navigation.html' %}
+    <div style="margin: 20px;">
+      {% block body %}
 
-    {% if messages %}
-    <div class="row justify-content-center pt-3">
-      <div class="col-md-6">
-        {% for message in messages %}
-        <div class="alert alert-primary" role="alert">{{message}}</div>
-        {% endfor %}
-    </div>
-    </div>
-    {% endif %}
+      {% if messages %}
+      <div class="row justify-content-center pt-3">
+        <div class="col-md-6">
+          {% for message in messages %}
+          <div class="alert alert-primary" role="alert">{{message}}</div>
+          {% endfor %}
+      </div>
+      </div>
+      {% endif %}
 
-<div class="row pt-3 pl-3">
-    <div class="col-md-2">
-      <ul class="list-group">
-        {% if user.is_authenticated %}
-        <li class="list-group-item"><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li class="list-group-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
-        {% else %}
-        <li class="list-group-item"><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li class="list-group-item"><a href="{% url 'account_signup' %}">Sign Up</a></li>
-        {% endif %}
-      </ul>
+  <!-- <div class="row pt-3 pl-3">
+      <div class="col-md-2">
+        <ul class="list-group">
+          {% if user.is_authenticated %}
+          <li class="list-group-item"><a href="{% url 'account_email' %}">Change E-mail</a></li>
+          <li class="list-group-item"><a href="{% url 'account_logout' %}">Sign Out</a></li>
+          {% else %}
+          <li class="list-group-item"><a href="{% url 'account_login' %}">Sign In</a></li>
+          <li class="list-group-item"><a href="{% url 'account_signup' %}">Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+  </div> -->
+      {% block content %}
+      {% endblock %}
+      {% endblock %}
     </div>
-</div>
-    {% block content %}
-    {% endblock %}
-    {% endblock %}
     {% block extra_body %}
     {% endblock %}
+    {% include 'employee/footer.html' %}
   </body>
 </html>

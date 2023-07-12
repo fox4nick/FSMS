@@ -1,0 +1,52 @@
+{% extends 'employee/base.html' %}
+{% block content %}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-sm-12 text-center mt-3">
+			<h1>Request ID: {{ new_request.pk }}</h1>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-sm-6 mt-5">
+			<h3>Employee Information</h3>
+		</div>
+
+		<div class="col-md-6 col-sm-6 mt-5">
+			<h3>Request Status</h3>
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-sm-12 mt-3">
+			<p><span style="font-weight: 400;">Name:</span> {{ new_request.name }}</p>
+			<p><span style="font-weight: 400;">Email:</span> {{ new_request.email }}</p>
+		</div>
+
+		<div class="col-md-6 col-sm-12">
+			<p class="mt-3">
+			<p class="mt-3">
+			<p><span style="font-weight: 400;">Status:</span> {{ new_request.status }}</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-sm-6 mt-5 ">
+			<h3>Request Summary</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 col-sm-12 mt-3">
+
+			<p>{{ new_request.snack }}</p>
+			<p>{{ new_request.argument }}</p>
+			<a href="{{ new_request.link }}">Link to Purchase!</a>
+
+			<form class="mt-3">
+				<input type="button" value="Go back!" onclick="location.href='../../dashboard/'">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}

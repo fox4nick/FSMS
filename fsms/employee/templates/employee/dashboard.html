@@ -1,0 +1,105 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+	<div class="container">
+		<div class="mt-3">
+			<h1 class="text-center">New Requests</h1>
+		</div>
+
+		<div class="row justify-content-center mt-3">
+			<div class="card col-md-5 mr-3">
+				<h4 class="text-center pt-2">Total Requests</h4>
+				<h1 class="text-center" style="color: #ad0003;">{{ total_requests }}</h1>
+			</div>
+
+			<div class="card col-md-5 mr-3">
+				<h4 class="text-center pt-2">Pending Requests</h4>
+				<h1 class="text-center" style="color: #ad0003;">{{ pending_requests }}</h1>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-md-12 mt-5">
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Request ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Status</th>
+							<th scope="col">Details</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for new_request in new_requests %}
+						<tr>
+							<th scope="row">{{ new_request.pk }}</th>
+							<td>{{ new_request.name }}</td>
+							<td>{{ new_request.email }}</td>
+							<td>{{ new_request.status }}</td>
+							{% if request.user.is_superuser %}
+								<td><a href="{% url 'admin-new-request-details' new_request.pk %}"><i class="far fa-edit"></i></a></td>
+							{% else %}
+								<td><a href="{% url 'new-request-details' new_request.pk %}"><i class="far fa-edit"></i></a></td>
+							{% endif %}
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="container">
+		<div>
+			<h1 class="text-center">Orders</h1>
+		</div>
+
+		<div class="row justify-content-center mt-3">
+			<div class="card col-md-5 mr-3">
+				<h4 class="text-center pt-2">Total Orders</h4>
+				<h1 class="text-center" style="color: #ad0003;">{{ total_orders }}</h1>
+			</div>
+
+			<div class="card col-md-5 mr-3">
+				<h4 class="text-center pt-2">Pending Orders</h4>
+				<h1 class="text-center" style="color: #ad0003;">{{ pending_orders }}</h1>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-md-12 mt-5">
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Order ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">Status</th>
+							<th scope="col">Details</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for order in orders %}
+						<tr>
+							<th scope="row">{{ order.pk }}</th>
+							<td>{{ order.name }}</td>
+							<td>{{ order.email }}</td>
+							<td>{{ order.status }}</td>
+							{% if request.user.is_superuser %}
+								<td><a href="{% url 'admin-order-details' order.pk %}"><i class="far fa-edit"></i></a></td>
+							{% else %}
+								<td><a href="{% url 'order-details' order.pk %}"><i class="far fa-edit"></i></a></td>
+							{% endif %}
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock content %}

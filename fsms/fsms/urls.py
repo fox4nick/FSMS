@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from employee.views import Index, About, Order, Menu, MenuSearch
+from employee.views import Index, About, Order, NewRequest, Menu, MenuSearch, Dashboard, OrderDetails, NewRequestDetails
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +26,11 @@ urlpatterns = [
     path('rule4/', include('rule4.urls')),
     path('', Index.as_view(), name='index'),
     path('about/', About.as_view(), name='about'),
+    path('dashboard/', Dashboard.as_view(), name='dashboard'),
     path('menu/', Menu.as_view(), name='menu'),
     path('menu/search/', MenuSearch.as_view(), name='menu-search'),
-    path('order/', Order.as_view(), name='order')
+    path('order/', Order.as_view(), name='order'),
+    path('new/request/', NewRequest.as_view(), name='new-request'),
+    path('orders/<int:pk>/', OrderDetails.as_view(), name='order-details'),
+    path('new_requests/<int:pk>/', NewRequestDetails.as_view(), name='new-request-details')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
