@@ -142,15 +142,16 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#Currently confirmations and updates are sent as emails to the console. This can easily be integrated with Slack in the future.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'nick@rule4.com'
-EMAIL_HOST_PASSWORD = 'xhehjxrxklfilaxk'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'nick@rule4.com'
+# EMAIL_HOST_PASSWORD = '' # DO NOT HARDCODE!
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
 
 ACCOUNT_ADAPTER = 'rule4.account_adapter.NoNewUsersAccountAdapter'
 LOGIN_REDIRECT_URL = 'index'
