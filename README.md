@@ -19,3 +19,9 @@ python3 manage.py runserver 0.0.0.0:8000
 ```
 
 Navigate to the webpage at 127.0.0.1:8000
+
+## Accessing the Admin Panel
+
+A dashboard has been created specifically for admin use that can be accessed through the navigation bar at the top.
+
+However, more admin functionality is accessible by navigating to 127.0.0.1:800/admin/.
